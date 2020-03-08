@@ -1,0 +1,40 @@
+entity Expense {
+	expenseName String required,
+    startDate LocalDate required,
+    amount Float required,
+    frequency Frequency required
+}
+
+entity ExpenseInstance {
+	date LocalDate required,
+    amount Float required
+    paid Boolean required
+}
+
+entity Salary {
+	salaryDate LocalDate required,
+    period Period required,
+    amount Float required
+}
+
+entity Bank {
+	entryDate LocalDate required,
+    currentPeriodEndBalance Float required,
+    nextPeriodEndBalance Float required,
+    periodAfterEndBalance Float required,
+    previousDayExpense Float required
+}
+
+relationship OneToMany {
+	Expense {expenseInst} to ExpenseInstance
+}
+
+enum Frequency {
+	DAILY, BIWEEKLY, 
+    MONTHLY, BIMONTHLY, QUATERLY
+}
+
+enum Period {
+	CLOSED_PERIOD, CURRENT_PERIOD,
+    NEXT_PERIOD, PERIOD_AFTER, FUTURE
+}
