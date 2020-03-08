@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-bank-heading">Create or edit a Bank</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_entryDate">Entry Date</label>
+                    <div class="input-group">
+                        <input id="field_entryDate" type="text" class="form-control" name="entryDate" ngbDatepicker #entryDateDp="ngbDatepicker" formControlName="entryDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="entryDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('entryDate')!.invalid && (editForm.get('entryDate')!.dirty || editForm.get('entryDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('entryDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_currentPeriodEndBalance">Current Period End Balance</label>
+                    <input type="number" class="form-control" name="currentPeriodEndBalance" id="field_currentPeriodEndBalance"
+                           formControlName="currentPeriodEndBalance"/>
+                    <div *ngIf="editForm.get('currentPeriodEndBalance')!.invalid && (editForm.get('currentPeriodEndBalance')!.dirty || editForm.get('currentPeriodEndBalance')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('currentPeriodEndBalance')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('currentPeriodEndBalance')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nextPeriodEndBalance">Next Period End Balance</label>
+                    <input type="number" class="form-control" name="nextPeriodEndBalance" id="field_nextPeriodEndBalance"
+                           formControlName="nextPeriodEndBalance"/>
+                    <div *ngIf="editForm.get('nextPeriodEndBalance')!.invalid && (editForm.get('nextPeriodEndBalance')!.dirty || editForm.get('nextPeriodEndBalance')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nextPeriodEndBalance')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('nextPeriodEndBalance')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_periodAfterEndBalance">Period After End Balance</label>
+                    <input type="number" class="form-control" name="periodAfterEndBalance" id="field_periodAfterEndBalance"
+                           formControlName="periodAfterEndBalance"/>
+                    <div *ngIf="editForm.get('periodAfterEndBalance')!.invalid && (editForm.get('periodAfterEndBalance')!.dirty || editForm.get('periodAfterEndBalance')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('periodAfterEndBalance')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('periodAfterEndBalance')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_previousDayExpense">Previous Day Expense</label>
+                    <input type="number" class="form-control" name="previousDayExpense" id="field_previousDayExpense"
+                           formControlName="previousDayExpense"/>
+                    <div *ngIf="editForm.get('previousDayExpense')!.invalid && (editForm.get('previousDayExpense')!.dirty || editForm.get('previousDayExpense')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('previousDayExpense')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('previousDayExpense')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

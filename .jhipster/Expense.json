@@ -1,0 +1,53 @@
+{
+    "name": "Expense",
+    "fields": [
+        {
+            "fieldName": "expenseName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "frequency",
+            "fieldType": "Frequency",
+            "fieldValues": "DAILY,BIWEEKLY,MONTHLY,BIMONTHLY,QUATERLY",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "expenseInstance",
+            "otherEntityRelationshipName": "expense",
+            "relationshipName": "expenseInst"
+        }
+    ],
+    "changelogDate": "20200308211500",
+    "entityTableName": "expense",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,39 @@
+{
+    "name": "Salary",
+    "fields": [
+        {
+            "fieldName": "salaryDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "period",
+            "fieldType": "Period",
+            "fieldValues": "CLOSED_PERIOD,CURRENT_PERIOD,NEXT_PERIOD,PERIOD_AFTER,FUTURE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200308211700",
+    "entityTableName": "salary",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

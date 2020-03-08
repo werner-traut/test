@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bank">
+            <h2><span>Bank</span> {{ bank.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Entry Date</span></dt>
+                <dd>
+                    <span>{{ bank.entryDate }}</span>
+                </dd>
+                <dt><span>Current Period End Balance</span></dt>
+                <dd>
+                    <span>{{ bank.currentPeriodEndBalance }}</span>
+                </dd>
+                <dt><span>Next Period End Balance</span></dt>
+                <dd>
+                    <span>{{ bank.nextPeriodEndBalance }}</span>
+                </dd>
+                <dt><span>Period After End Balance</span></dt>
+                <dd>
+                    <span>{{ bank.periodAfterEndBalance }}</span>
+                </dd>
+                <dt><span>Previous Day Expense</span></dt>
+                <dd>
+                    <span>{{ bank.previousDayExpense }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bank', bank.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
