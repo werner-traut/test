@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span>Expense Instances</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-expense-instance" [routerLink]="['/expense-instance/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Expense Instance
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="expenseInstances?.length === 0">
+        <span>No expenseInstances found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="expenseInstances?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Date</span></th>
+                    <th scope="col" ><span>Amount</span></th>
+                    <th scope="col" ><span>Paid</span></th>
+                    <th scope="col" ><span>Expense</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let expenseInstance of expenseInstances ;trackBy: trackId">
+                    <td><a [routerLink]="['/expense-instance', expenseInstance.id, 'view']">{{ expenseInstance.id }}</a></td>
+                    <td>{{ expenseInstance.date | date:'mediumDate' }}</td>
+                    <td>{{ expenseInstance.amount }}</td>
+                    <td>{{ expenseInstance.paid }}</td>
+                    <td>
+                        <div *ngIf="expenseInstance.expense">
+                            <a [routerLink]="['/expense', expenseInstance.expense?.id, 'view']" >{{ expenseInstance.expense?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/expense-instance', expenseInstance.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/expense-instance', expenseInstance.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(expenseInstance)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

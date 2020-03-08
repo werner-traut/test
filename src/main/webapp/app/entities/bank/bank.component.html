@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span>Banks</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bank" [routerLink]="['/bank/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Bank
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="banks?.length === 0">
+        <span>No banks found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="banks?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Entry Date</span></th>
+                    <th scope="col" ><span>Current Period End Balance</span></th>
+                    <th scope="col" ><span>Next Period End Balance</span></th>
+                    <th scope="col" ><span>Period After End Balance</span></th>
+                    <th scope="col" ><span>Previous Day Expense</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bank of banks ;trackBy: trackId">
+                    <td><a [routerLink]="['/bank', bank.id, 'view']">{{ bank.id }}</a></td>
+                    <td>{{ bank.entryDate | date:'mediumDate' }}</td>
+                    <td>{{ bank.currentPeriodEndBalance }}</td>
+                    <td>{{ bank.nextPeriodEndBalance }}</td>
+                    <td>{{ bank.periodAfterEndBalance }}</td>
+                    <td>{{ bank.previousDayExpense }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/bank', bank.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/bank', bank.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(bank)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
